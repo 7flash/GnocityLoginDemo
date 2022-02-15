@@ -1278,6 +1278,9 @@ function stackTrace() {
 }
 
 function _Authorize() {
+ createUnityInstance(canvas, config, progress => {
+  progressBarFull.style.width = 100 * progress + "%";
+ }).then(unityInstance => {
   const loginUrl = `${window.location.href}authorize.html`;
   const loginPopup = window.open(loginUrl, "AuthorizePopup", "height=1,width=1");
   loginPopup.addEventListener("message", function(event) {
@@ -1286,6 +1289,7 @@ function _Authorize() {
    loginPopup.close();
    unityInstance.SendMessage("GnomeAuthorizationCanvas", "CompleteAuth", accountName);
   }, false);
+ });
 }
 
 var JS_Accelerometer = null;
