@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script>
+            const loginUrl = "https://all-access.wax.io/cloud-wallet/login";
+
+            const loginPopup = window.open(loginUrl, "WaxPopup", "height=800,width=600");
+
+            loginPopup.addEventListener('message', function(event) {
+                console.log(event)
+
+                window.opener.postMessage(event.data, '*');
+
+                window.close();
+            });  
+        </script>
+    </head>
+    <body>
+        Authorizing...
+    </body>
+</html>
